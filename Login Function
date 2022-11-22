@@ -1,0 +1,36 @@
+#include <iostream>
+using namespace std;
+
+class loginFunction{
+	public:
+		string userNameAttempt;
+		string passWordAttempt;
+		
+		// constructor
+		loginFunction(){
+			accessGranted = false;
+		}
+		
+		//function
+		void login(){
+			cout << "Please enter your password and user.\nUsername: ";
+			cin >>  userNameAttempt;
+			if(userNameAttempt==userName){
+				cout << "Password:";
+				cin >> passWordAttempt;
+				if(passWordAttempt==passWord){
+					cout << "Login successful";
+				}
+			}
+		}
+		
+	private:
+		string passWord = "password";
+		string userName = "user@email.com";
+		bool accessGranted;
+};
+
+int main(){
+	loginFunction loginFunctionObj;
+	loginFunctionObj.login();
+}
