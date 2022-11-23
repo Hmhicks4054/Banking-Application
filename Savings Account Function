@@ -1,1 +1,36 @@
-*Working on it*
+*Subtraction function not working?!*
+
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+  int deposit;  
+  int transfer;
+  int newTotal = deposit - transfer;
+  string input;
+  
+  cout << "Would you like to create a savings account (y/n): " << endl;
+  cin >> input;
+  if(input.compare("y"))
+  {
+    cout << " " << endl;
+  }
+  else if(input.compare("n"))
+  {
+    cout << "Account created" << endl;
+    
+    cout << "How much would you like to deposit: $";
+    cin >> deposit;
+    
+    cout << "Total: $" << deposit << endl;
+    
+    cout << "Would you like to make a transfer (y/n): " << endl;
+    cin >> input;
+  
+    cout << "How much would you like to transfer: $";
+    cin >> transfer;
+
+    cout << "Total: $" << newTotal;
+    }
+}
