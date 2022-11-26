@@ -1,13 +1,11 @@
-*Subtraction function not working?!*
-
 #include <iostream>
 #include <string>
 using namespace std;
-int main()
-{
+
+void savingsAcc(){
+    
   int deposit;  
   int transfer;
-  int newTotal = deposit - transfer;
   string input;
   
   cout << "Would you like to create a savings account (y/n): " << endl;
@@ -27,10 +25,26 @@ int main()
     
     cout << "Would you like to make a transfer (y/n): " << endl;
     cin >> input;
+    
+      if(input.compare("y"))
+      {
+        cout << " " << endl;
+      }
+      else if(input.compare("n"))
+      {
+    
   
     cout << "How much would you like to transfer: $";
     cin >> transfer;
 
-    cout << "Total: $" << newTotal;
+    cout << "Total: $" << deposit-transfer << endl;
+        }
     }
+}
+
+int main()
+{
+  
+    savingsAcc();
+    return 0;
 }
