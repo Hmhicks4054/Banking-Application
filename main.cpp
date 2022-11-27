@@ -109,49 +109,29 @@ int main() {
             double withdrawal_amount;
             Transaction transaction;
 
+            //if savings & checking acc's
             if (savings_created) {
                 int input;
                 cout << "\nWhat account would you like to withdraw from?" << endl << "---1: Checking\n---2: Deposit\n"
                      << endl;
                 cin >> input;
 
+                //withdrawal from checking
                 if (input == 1) {
                     cout << "Enter withdrawal amount: $";
                     cin >> withdrawal_amount;
+
+                    try {
+                        if (checking.balance < withdrawal_amount) {
+                            throw 10;
+                        }
+                    } catch (int e) {
+                        cout << "Error! Low funds\n";
+                        continue;
+                    }
+
                     checking.balance = transaction.withdrawal(checking.balance, withdrawal_amount);
 
-                    if (checking.balance) {
-                        cout << "Withdrawal complete!\n";
-                        cout << "---Checking: $" << checking.balance << endl;
-
-                        if (continueTransaction()) {
-                            continue;
-                        } else {
-                            break;
-                        }
-                    }
-                } else {
-                    cout << "Enter withdrawal amount: $";
-                    cin >> withdrawal_amount;
-                    savings.balance = transaction.withdrawal(savings.balance, withdrawal_amount);
-
-                    if (savings.balance) {
-                        cout << "Withdrawal complete!\n";
-                        cout << "---Savings: $" << savings.balance << endl;
-
-                        if (continueTransaction()) {
-                            continue;
-                        } else {
-                            break;
-                        }
-                    }
-                }
-            } else {
-                cout << "Enter withdrawal amount: $";
-                cin >> withdrawal_amount;
-                checking.balance = transaction.withdrawal(checking.balance, withdrawal_amount);
-
-                if (checking.balance) {
                     cout << "Withdrawal complete!\n";
                     cout << "---Checking: $" << checking.balance << endl;
 
@@ -160,7 +140,58 @@ int main() {
                     } else {
                         break;
                     }
+
+                //withdrawal from savings
+                } else {
+                    cout << "Enter withdrawal amount: $";
+                    cin >> withdrawal_amount;
+
+                    try {
+                        if (savings.balance < withdrawal_amount) {
+                            throw 10;
+                        }
+                    } catch (int e) {
+                        cout << "Error! Low funds\n";
+                        continue;
+                    }
+
+                    savings.balance = transaction.withdrawal(savings.balance, withdrawal_amount);
+
+                    cout << "Withdrawal complete!\n";
+                    cout << "---Savings: $" << savings.balance << endl;
+
+                    if (continueTransaction()) {
+                        continue;
+                    } else {
+                        break;
+                    }
+
                 }
+            //if no savings acc
+            } else {
+                cout << "Enter withdrawal amount: $";
+                cin >> withdrawal_amount;
+
+                try {
+                    if (checking.balance < withdrawal_amount) {
+                        throw 10;
+                    }
+                } catch (int e) {
+                    cout << "Error! Low funds\n";
+                    continue;
+                }
+
+                checking.balance = transaction.withdrawal(checking.balance, withdrawal_amount);
+
+                cout << "Withdrawal complete!\n";
+                cout << "---Checking: $" << checking.balance << endl;
+
+                if (continueTransaction()) {
+                    continue;
+                } else {
+                    break;
+                }
+
             }
         } else if (input == 2) {
             Transaction transaction;
@@ -176,6 +207,16 @@ int main() {
                 cin >> input;
 
                 if (input == 1) {
+
+                    try {
+                        if (deposit_amount <= 0) {
+                            throw 10;
+                        }
+                    } catch (int e) {
+                        cout <<"Error! Deposits must be larger than 0\n";
+                        continue;
+                    }
+
                     checking.balance = transaction.deposit(checking.balance, deposit_amount);
 
                     cout << "Deposit complete!\n";
@@ -187,6 +228,14 @@ int main() {
                         break;
                     }
                 } else {
+                    try {
+                        if (deposit_amount <= 0) {
+                            throw 10;
+                        }
+                    } catch (int e) {
+                        cout <<"Error! Deposits must be larger than 0\n";
+                        continue;
+                    }
                     savings.balance = transaction.deposit(savings.balance, deposit_amount);
 
                     cout << "Deposit complete!\n";
@@ -199,6 +248,14 @@ int main() {
                     }
                 }
             } else {
+                try {
+                    if (deposit_amount <= 0) {
+                        throw 10;
+                    }
+                } catch (int e) {
+                    cout <<"Error! Deposits must be larger than 0\n";
+                    continue;
+                }
                 checking.balance = transaction.deposit(checking.balance, deposit_amount);
 
                 cout << "Deposit complete!\n";
@@ -223,51 +280,70 @@ int main() {
             cin >> input;
 
             if (input == 1) {
+                try {
+                    if (checking.balance < transfer_amount) {
+                        throw 10;
+                    }
+
+                    if (transfer_amount <= 0) {
+                        throw 20;
+                    }
+                } catch (int e) {
+                    if (e == 20) {
+                        cout << "Error! Transfers must be greater than $0\n";
+                        continue;
+                    } else {
+                        cout << "Error! Low funds\n";
+                        continue;
+                    }
+                }
+
                 checking.balance = transaction.withdrawal(checking.balance, transfer_amount);
                 savings.balance = transaction.deposit(savings.balance, transfer_amount);
 
                 cout << "Transfer complete! \n";
-                if (checking.balance) {
-                    cout << "---Checking: $" << checking.balance << endl;
+                cout << "---Checking: $" << checking.balance << endl;
+                cout << "---Savings: $" << savings.balance << endl;
 
-                    if (continueTransaction()) {
-                        continue;
-                    } else {
-                        break;
-                    }
+                if (continueTransaction()) {
+                    continue;
+                } else {
+                    break;
                 }
-                if (savings.balance) {
-                    cout << "---Savings: $" << savings.balance << endl;
 
-                    if (continueTransaction()) {
-                        continue;
-                    } else {
-                        break;
-                    }
-                }
             } else {
+                try {
+                    if (savings.balance < transfer_amount) {
+                        throw 10;
+                    }
+
+                    if (transfer_amount <= 0) {
+                        throw 20;
+                    }
+                } catch (int e) {
+                    if (e == 20) {
+                        cout << "Error! Transfers must be greater than $0\n";
+                        continue;
+                    } else {
+                        cout << "Error! Low funds\n";
+                        continue;
+                    }
+                }
+
                 checking.balance = transaction.deposit(checking.balance, transfer_amount);
                 savings.balance = transaction.withdrawal(savings.balance, transfer_amount);
 
                 cout << "Transfer complete! \n";
-                if (checking.balance) {
-                    cout << "---Checking: $" << checking.balance << endl;
+                cout << "---Checking: $" << checking.balance << endl;
 
-                    if (continueTransaction()) {
-                        continue;
-                    } else {
-                        break;
-                    }
-                }
-                if (savings.balance) {
-                    cout << "---Savings: $" << savings.balance << endl;
+                cout << "---Savings: $" << savings.balance << endl;
 
-                    if (continueTransaction()) {
-                        continue;
-                    } else {
-                        break;
-                    }
+                if (continueTransaction()) {
+                    continue;
+                } else {
+                    break;
                 }
+
             }
 
         } else if (input == 4) {
