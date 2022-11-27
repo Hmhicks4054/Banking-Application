@@ -99,9 +99,9 @@ int main() {
     while (i > 0) {
         if (savings_created) {
             cout << "\nWhat would you like to do?" << endl
-                 << "---1: Withdrawal\n---2: Deposit\n---3: Transfer\n---4: Display Account Balances" << endl;
+                 << "---1: Withdrawal\n---2: Deposit\n---3: Transfer\n---4: Display Account Balances\n---5: Exit" << endl;
         } else {
-            cout << "What would you like to do?" << endl << "---1: Withdrawal\n---2: Deposit\n" << endl;
+            cout << "What would you like to do?" << endl << "---1: Withdrawal\n---2: Deposit\n---4: Display Account Balances\n---5: Exit" << endl;
         }
         cin >> input;
 
@@ -270,7 +270,7 @@ int main() {
                 }
             }
 
-        } else {
+        } else if (input == 4) {
             cout << "Account Balances:\n";
             cout << "---Checking: $" << checking.balance << endl;
 
@@ -283,6 +283,8 @@ int main() {
             } else {
                 break;
             }
+        } else {
+            break;
         }
     }
     return 0;
