@@ -6,25 +6,9 @@ using namespace std;
 //
 
 double Transaction::withdrawal(double balance, double amount) {
-    try {
-        if (balance < amount) {
-            throw 10;
-        }
-        return balance - amount;
-    } catch (int e) {
-        cout << "Error! Low funds";
-        return 0;
-    }
+    return balance - amount;
 }
 
 double Transaction::deposit(double balance, double amount) {
-    try {
-        if (amount <= 0) {
-            throw 10;
-        }
-        return balance + amount;
-    } catch (int e) {
-        cout <<"Error! Deposits must be larger than 0";
-        return 0;
-    }
+    return balance + amount;
 }
