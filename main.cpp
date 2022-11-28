@@ -112,7 +112,7 @@ int main() {
             //if savings & checking acc's
             if (savings_created) {
                 int input;
-                cout << "\nWhat account would you like to withdraw from?" << endl << "---1: Checking\n---2: Deposit\n"
+                cout << "\nWhat account would you like to withdraw from?" << endl << "---1: Checking\n---2: Savings\n"
                      << endl;
                 cin >> input;
 
