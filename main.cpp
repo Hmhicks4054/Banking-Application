@@ -19,7 +19,7 @@ public:
 
     //function
     void login(){
-		cout << "Welcome" << endl;
+        cout << "Welcome" << endl;
         cout << "Please enter your password and user.\nUsername: ";
         cin >>  userNameAttempt;
         if(userNameAttempt==userName){
@@ -57,8 +57,8 @@ int savingsAcc(){
 
     string input;
 
-	cout << "Thank you for using our services." << endl;
-    cout << "Would you like to create a savings account (y/n): " << endl;
+    cout << "Thank you for using our services." << endl;
+    cout << "Would you like to create a savings account? (y/n): " << endl;
     cin >> input;
     if(input.compare("y"))
     {
@@ -86,7 +86,7 @@ int main() {
     if (savingsAcc()) {
         savings_created = true;
     } else {
-        cout << "Since you don't have a savings account, any actions will be performed against your checking."<< endl;
+        cout << "Since you don't have a savings account, any actions will be performed against your checking." << endl;
     }
 
     int input;
@@ -101,9 +101,11 @@ int main() {
     while (i > 0) {
         if (savings_created) {
             cout << "\nWhat would you like to do?" << endl
-                 << "---1: Withdrawal\n---2: Deposit\n---3: Transfer\n---4: Display Account Balances\n---5: Exit" << endl;
+                 << "---1: Withdrawal\n---2: Deposit\n---3: Transfer\n---4: Display Account Balances\n---5: Exit"
+                 << endl;
         } else {
-            cout << "What would you like to do?" << endl << "---1: Withdrawal\n---2: Deposit\n---4: Display Account Balances\n---5: Exit" << endl;
+            cout << "What would you like to do?" << endl
+                 << "---1: Withdrawal\n---2: Deposit\n---4: Display Account Balances\n---5: Exit" << endl;
         }
         cin >> input;
 
@@ -143,7 +145,7 @@ int main() {
                         break;
                     }
 
-                //withdrawal from savings
+                    //withdrawal from savings
                 } else {
                     cout << "Enter withdrawal amount: $";
                     cin >> withdrawal_amount;
@@ -169,7 +171,7 @@ int main() {
                     }
 
                 }
-            //if no savings acc
+                //if no savings acc
             } else {
                 cout << "Enter withdrawal amount: $";
                 cin >> withdrawal_amount;
@@ -215,7 +217,7 @@ int main() {
                             throw 10;
                         }
                     } catch (int e) {
-                        cout <<"Error! Deposits must be larger than $0\n";
+                        cout << "Error! Deposits must be larger than $0\n";
                         continue;
                     }
 
@@ -235,7 +237,7 @@ int main() {
                             throw 10;
                         }
                     } catch (int e) {
-                        cout <<"Error! Deposits must be larger than $0\n";
+                        cout << "Error! Deposits must be larger than $0\n";
                         continue;
                     }
                     savings.balance = transaction.deposit(savings.balance, deposit_amount);
@@ -255,7 +257,7 @@ int main() {
                         throw 10;
                     }
                 } catch (int e) {
-                    cout <<"Error! Deposits must be larger than $0\n";
+                    cout << "Error! Deposits must be larger than $0\n";
                     continue;
                 }
                 checking.balance = transaction.deposit(checking.balance, deposit_amount);
