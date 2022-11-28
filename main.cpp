@@ -19,6 +19,7 @@ public:
 
     //function
     void login(){
+		cout << "Welcome" << endl;
         cout << "Please enter your password and user.\nUsername: ";
         cin >>  userNameAttempt;
         if(userNameAttempt==userName){
@@ -56,6 +57,7 @@ int savingsAcc(){
 
     string input;
 
+	cout << "Thank you for using our services." << endl;
     cout << "Would you like to create a savings account (y/n): " << endl;
     cin >> input;
     if(input.compare("y"))
@@ -213,7 +215,7 @@ int main() {
                             throw 10;
                         }
                     } catch (int e) {
-                        cout <<"Error! Deposits must be larger than 0\n";
+                        cout <<"Error! Deposits must be larger than $0\n";
                         continue;
                     }
 
@@ -233,7 +235,7 @@ int main() {
                             throw 10;
                         }
                     } catch (int e) {
-                        cout <<"Error! Deposits must be larger than 0\n";
+                        cout <<"Error! Deposits must be larger than $0\n";
                         continue;
                     }
                     savings.balance = transaction.deposit(savings.balance, deposit_amount);
@@ -253,7 +255,7 @@ int main() {
                         throw 10;
                     }
                 } catch (int e) {
-                    cout <<"Error! Deposits must be larger than 0\n";
+                    cout <<"Error! Deposits must be larger than $0\n";
                     continue;
                 }
                 checking.balance = transaction.deposit(checking.balance, deposit_amount);
