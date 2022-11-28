@@ -112,7 +112,7 @@ int main() {
             //if savings & checking acc's
             if (savings_created) {
                 int input;
-                cout << "\nWhat account would you like to withdraw from?" << endl << "---1: Checking\n---2: Savings\n"
+                cout << "\nWhat account would you like to withdraw from?" << endl << "---1: Checking\n---2: Deposit\n"
                      << endl;
                 cin >> input;
 
@@ -132,7 +132,7 @@ int main() {
 
                     checking.balance = transaction.withdrawal(checking.balance, withdrawal_amount);
 
-                    cout << "Withdrawal complete!\n";
+                    cout << "Withdrawal complete, your new account balance is shown below!\n";
                     cout << "---Checking: $" << checking.balance << endl;
 
                     if (continueTransaction()) {
@@ -157,7 +157,7 @@ int main() {
 
                     savings.balance = transaction.withdrawal(savings.balance, withdrawal_amount);
 
-                    cout << "Withdrawal complete!\n";
+                    cout << "Withdrawal complete, your new account balance is shown below!\n";
                     cout << "---Savings: $" << savings.balance << endl;
 
                     if (continueTransaction()) {
@@ -183,7 +183,7 @@ int main() {
 
                 checking.balance = transaction.withdrawal(checking.balance, withdrawal_amount);
 
-                cout << "Withdrawal complete!\n";
+                cout << "Withdrawal complete, your new account balance is shown below!\n";
                 cout << "---Checking: $" << checking.balance << endl;
 
                 if (continueTransaction()) {
@@ -219,7 +219,7 @@ int main() {
 
                     checking.balance = transaction.deposit(checking.balance, deposit_amount);
 
-                    cout << "Deposit complete!\n";
+                    cout << "Deposit complete, your new account balance is shown below!\n";
                     cout << "---Checking: $" << checking.balance << endl;
 
                     if (continueTransaction()) {
@@ -238,7 +238,7 @@ int main() {
                     }
                     savings.balance = transaction.deposit(savings.balance, deposit_amount);
 
-                    cout << "Deposit complete!\n";
+                    cout << "Deposit complete, your new account balance is shown below!\n";
                     cout << "---Savings: $" << savings.balance << endl;
 
                     if (continueTransaction()) {
@@ -258,7 +258,7 @@ int main() {
                 }
                 checking.balance = transaction.deposit(checking.balance, deposit_amount);
 
-                cout << "Deposit complete!\n";
+                cout << "Deposit complete, your new account balance is shown below!\n";
                 cout << "---Checking: $" << checking.balance << endl;
 
                 if (continueTransaction()) {
@@ -301,7 +301,7 @@ int main() {
                 checking.balance = transaction.withdrawal(checking.balance, transfer_amount);
                 savings.balance = transaction.deposit(savings.balance, transfer_amount);
 
-                cout << "Transfer complete! \n";
+                cout << "Transfer complete, your new account balances are shown below! \n";
                 cout << "---Checking: $" << checking.balance << endl;
                 cout << "---Savings: $" << savings.balance << endl;
 
@@ -333,9 +333,8 @@ int main() {
                 checking.balance = transaction.deposit(checking.balance, transfer_amount);
                 savings.balance = transaction.withdrawal(savings.balance, transfer_amount);
 
-                cout << "Transfer complete! \n";
+                cout << "Transfer complete, your new account balances are shown below! \n";
                 cout << "---Checking: $" << checking.balance << endl;
-
                 cout << "---Savings: $" << savings.balance << endl;
 
                 if (continueTransaction()) {
